@@ -1,9 +1,10 @@
+/*jshint esnext: true */
 import React from 'react';
 import _ from 'underscore';
 
 // this should be moved away from app.js
 import request from 'request';
-import whacko from 'whacko'
+import whacko from 'whacko';
 import charset from 'charset';
 import iconv from 'iconv-lite';
 import esprima from 'esprima';
@@ -17,7 +18,7 @@ var ComicReader = React.createClass({
         return {
             url: null,
             imageLink: []
-        }
+        };
     },
 
     parseHtml(response) {
@@ -46,7 +47,7 @@ var ComicReader = React.createClass({
             }
         }
 
-        if (issueMagic == '') {
+        if (issueMagic === '') {
            issueMagic = this.ss(cs, cc - f, f);
         }
 
@@ -77,7 +78,7 @@ var ComicReader = React.createClass({
 
     ss(a, b, c, d) {
         let e = a.substring(b, b + c);
-        return d == null ? e.replace(/[a-z]*/gi, '')  : e;
+        return d === null ? e.replace(/[a-z]*/gi, '')  : e;
     },
     
     nn(n) {
@@ -87,9 +88,11 @@ var ComicReader = React.createClass({
     mm(p) {
         return (parseInt((p - 1) / 10) % 10) + (((p - 1) % 10) * 3);
     },
+
     getUrl(url) {
         this.setState({url: url});
     },
+
     componentDidUpdate() {
         if(this.state.url !== null) {
         let url = this.state.url;
@@ -100,7 +103,7 @@ var ComicReader = React.createClass({
             let response = {
                 header: resp,
                 data: body
-            }
+            };
             let $ = this.parseHtml(response);
             let element = $('script');
             let ast = this.parseScript(element[10].children[0].data);
