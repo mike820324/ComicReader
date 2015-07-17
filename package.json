@@ -24,6 +24,7 @@
     "iconv-lite": "^0.4.11",
     "react": "^0.13.3",
     "request": "^2.58.0",
+    "underscore": "^1.8.3",
     "whacko": "^0.18.1"
   },
   "devDependencies": {

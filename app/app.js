@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'underscore';
 
 // this should be moved away from app.js
 import request from 'request';
@@ -115,12 +116,9 @@ var ComicReader = React.createClass({
             let ch = url.split('=')[1];
             let issueMagic = this.getIssueMagic(variables.cs, ch);
             let pageNum = this.getPageNum(issueMagic);
-            let images = [];
-
-            for(let j = 0; j < pageNum; j++) {
-                var imageUrl = this.getImageUrl(issueMagic, variables.ti, j+1);
-                images.push(imageUrl);
-            }
+            let images = _.range(pageNum).map((number) => {
+                return this.getImageUrl(issueMagic, variables.ti, number);
+            });
 
             this.setState({imageLink: images});
         }.bind(this));
