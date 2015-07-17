@@ -1,0 +1,33 @@
+{
+  "name": "ComicReader",
+  "version": "0.0.1",
+  "description": "A simple Comic reader using Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ./",
+    "build": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mike820324/ComicReader"
+  },
+  "author": "RueiMin Jiang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mike820324/ComicReader/issues"
+  },
+  "homepage": "https://github.com/mike820324/ComicReader",
+  "dependencies": {
+    "charset": "^1.0.0",
+    "esprima": "^2.4.1",
+    "iconv-lite": "^0.4.11",
+    "react": "^0.13.3",
+    "request": "^2.58.0",
+    "whacko": "^0.18.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0"
+  }
+}
