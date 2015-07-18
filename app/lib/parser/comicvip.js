@@ -1,7 +1,7 @@
 import _ from "underscore";
 import baseParser from "./base";
 
-class comicvipParser extends baseParser {
+class ComicvipParser extends baseParser {
     constructor() {
         super();
         this.issueMagic = "#Form1 > script";
@@ -87,4 +87,4 @@ class comicvipParser extends baseParser {
 
 }
 
-export default new comicvipParser();
+export default new ComicvipParser();
