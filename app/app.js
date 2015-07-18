@@ -47,7 +47,7 @@ var ComicReader = React.createClass({
             }
         }
 
-        if (issueMagic === '') {
+        if (issueMagic == '') {
            issueMagic = this.ss(cs, cc - f, f);
         }
 
@@ -78,7 +78,7 @@ var ComicReader = React.createClass({
 
     ss(a, b, c, d) {
         let e = a.substring(b, b + c);
-        return d === null ? e.replace(/[a-z]*/gi, '')  : e;
+        return d == null ? e.replace(/[a-z]*/gi, '')  : e;
     },
     
     nn(n) {
