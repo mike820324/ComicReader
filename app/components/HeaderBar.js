@@ -1,4 +1,5 @@
 import React from "react";
+import clipboard from "clipboard";
 
 var HeaderBar = React.createClass({
     propTypes: {
@@ -6,17 +7,23 @@ var HeaderBar = React.createClass({
     },
 
     onClickHandler() {
-        let node = this.refs.input_url.getDOMNode();
-        let url = node.value;
+        const node = this.refs.input_url.getDOMNode();
+        const url = node.value;
         node.value = "";
         this.props.onClick(url);
+    },
+
+    pasteFromClipboard() {
+        const clipboardText = clipboard.readText();
+        const node = this.refs.input_url.getDOMNode();
+        node.value = clipboardText;
     },
 
     render() {
         return (
             <div>
                 <h1> Comic Reader </h1>
-                <input ref="input_url" type="text"/>
+                <input ref="input_url" type="text" onFocus={this.pasteFromClipboard}/>
                 <button onClick={this.onClickHandler}> Fetch </button>
             </div>
         );

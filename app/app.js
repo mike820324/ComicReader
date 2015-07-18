@@ -9,7 +9,7 @@ import ImageList from "./components/ImageList";
 var ComicReader = React.createClass({
     getInitialState() {
         return {
-            url: null,
+            url: "",
             imageLink: []
         };
     },
@@ -19,7 +19,7 @@ var ComicReader = React.createClass({
     },
 
     componentDidUpdate() {
-        if(this.state.url !== null) {
+        if(this.state.url !== "") {
             comicvipParser.getImageLinks(this.state.url)
             .then(images => {
                 this.setState({imageLink: images});
