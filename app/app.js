@@ -1,4 +1,3 @@
-/*jshint esnext: true */
 import React from 'react';
 import _ from 'underscore';
 
@@ -120,11 +119,11 @@ var ComicReader = React.createClass({
             let issueMagic = this.getIssueMagic(variables.cs, ch);
             let pageNum = this.getPageNum(issueMagic);
             let images = _.range(pageNum).map((number) => {
-                return this.getImageUrl(issueMagic, variables.ti, number);
+                return this.getImageUrl(issueMagic, variables.ti, number+1);
             });
 
             this.setState({imageLink: images});
-        }.bind(this));
+        });
         }
     },
 
