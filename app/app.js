@@ -1,16 +1,16 @@
-import React from 'react';
-import _ from 'underscore';
+import React from "react";
+import _ from "underscore";
 
 // this should be moved away from app.js
-import request from 'request';
-import whacko from 'whacko';
-import charset from 'charset';
-import iconv from 'iconv-lite';
-import esprima from 'esprima';
+import request from "request";
+import whacko from "whacko";
+import charset from "charset";
+import iconv from "iconv-lite";
+import esprima from "esprima";
 
 // import compoenents
-import HeaderBar from './components/HeaderBar';
-import ImageList from './components/ImageList';
+import HeaderBar from "./components/HeaderBar";
+import ImageList from "./components/ImageList";
 
 var ComicReader = React.createClass({
     getInitialState() {
@@ -26,10 +26,10 @@ var ComicReader = React.createClass({
         let encodeBuffer = iconv.decode(response.data, encoding);
 
         // html parsing
-        let $ = whacko.load(encodeBuffer, {encodeEntities:false});
+        let $ = whacko.load(encodeBuffer, {encodeEntities: false});
         return $;
     },
-    
+
     // return the ast tree of a pure javascript
     parseScript(rawData) {
         return esprima.parse(rawData);
@@ -46,7 +46,7 @@ var ComicReader = React.createClass({
             }
         }
 
-        if (issueMagic == '') {
+        if (issueMagic == "") {
            issueMagic = this.ss(cs, cc - f, f);
         }
 
@@ -57,33 +57,33 @@ var ComicReader = React.createClass({
         return this.ss(issueMagic, 7, 3); // page number
 
     },
-    
+
     getImageUrl(issueMagic, ti, p) {
         let f = 50;
-        return 'http://img' 
-               + this.ss(issueMagic, 4, 2) 
-               + '.8comic.com/' 
-               + this.ss(issueMagic, 6, 1) 
-               + '/' 
-               + ti 
-               + '/' 
-               + this.ss(issueMagic, 0, 4) 
-               + '/' 
-               + this.nn(p) 
-               + '_' 
-               + this.ss(issueMagic, this.mm(p) + 10, 3, f) 
-               + '.jpg';
+        return "http://img"
+               + this.ss(issueMagic, 4, 2)
+               + ".8comic.com/"
+               + this.ss(issueMagic, 6, 1)
+               + "/"
+               + ti
+               + "/"
+               + this.ss(issueMagic, 0, 4)
+               + "/"
+               + this.nn(p)
+               + "_"
+               + this.ss(issueMagic, this.mm(p) + 10, 3, f)
+               + ".jpg";
     },
 
     ss(a, b, c, d) {
         let e = a.substring(b, b + c);
-        return d == null ? e.replace(/[a-z]*/gi, '')  : e;
+        return d == null ? e.replace(/[a-z]*/gi, "") : e;
     },
-    
+
     nn(n) {
-        return n < 10 ? '00' + n : n < 100 ? '0' + n : n;
+        return n < 10 ? "00" + n : n < 100 ? "0" + n : n;
     },
-    
+
     mm(p) {
         return (parseInt((p - 1) / 10) % 10) + (((p - 1) % 10) * 3);
     },
@@ -104,22 +104,22 @@ var ComicReader = React.createClass({
                 data: body
             };
             let $ = this.parseHtml(response);
-            let element = $('script');
+            let element = $("script");
             let ast = this.parseScript(element[10].children[0].data);
             let variables = {};
             for( let i of ast.body) {
-                if( i.type == 'VariableDeclaration') {
+                if( i.type === "VariableDeclaration") {
                     let name = i.declarations[0].id.name;
                     let value = i.declarations[0].init.value;
                     variables[name] = value;
                 }
             }
 
-            let ch = url.split('=')[1];
+            let ch = url.split("=")[1];
             let issueMagic = this.getIssueMagic(variables.cs, ch);
             let pageNum = this.getPageNum(issueMagic);
             let images = _.range(pageNum).map((number) => {
-                return this.getImageUrl(issueMagic, variables.ti, number+1);
+                return this.getImageUrl(issueMagic, variables.ti, number + 1);
             });
 
             this.setState({imageLink: images});
@@ -128,7 +128,7 @@ var ComicReader = React.createClass({
     },
 
     render() {
-        return(
+        return (
             <div>
                 <HeaderBar onClick={this.getUrl}/>
                 <ImageList images={this.state.imageLink} />
@@ -140,6 +140,6 @@ var ComicReader = React.createClass({
 
 React.render(
     <ComicReader />,
-    document.getElementById('app')
+    document.getElementById("app")
 );
 

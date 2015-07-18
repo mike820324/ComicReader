@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 var ImageList = React.createClass({
     propTypes: {
@@ -6,11 +6,11 @@ var ImageList = React.createClass({
     },
 
     render() {
-        return(
+        return (
             <div>
                 {
                     this.props.images.map((imgLink) => {
-                        return <img src={imgLink} />
+                        return <img src={imgLink} />;
                     })
                 }
             </div>

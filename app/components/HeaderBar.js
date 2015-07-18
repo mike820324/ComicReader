@@ -1,5 +1,4 @@
-/* jshint esnext: true */
-import React from 'react';
+import React from "react";
 
 var HeaderBar = React.createClass({
     propTypes: {
@@ -14,7 +13,7 @@ var HeaderBar = React.createClass({
     },
 
     render() {
-        return(
+        return (
             <div>
                 <h1> Comic Reader </h1>
                 <input ref="input_url" type="text"/>
