@@ -1,3 +1,4 @@
+/* jshint esnext: true */
 import React from 'react';
 
 var HeaderBar = React.createClass({
@@ -6,7 +7,7 @@ var HeaderBar = React.createClass({
     },
 
     onClickHandler() {
-        let node = React.findDOMNode(this.refs.input_url);
+        let node = this.refs.input_url.getDOMNode();
         let url = node.value;
         node.value = "";
         this.props.onClick(url);
