@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/mike820324/ComicReader.git",
   "dependencies": {
+    "bluebird": "^2.9.34",
     "charset": "^1.0.0",
     "esprima": "^2.4.1",
     "iconv-lite": "^0.4.11",
