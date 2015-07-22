@@ -1,4 +1,5 @@
 import React from "react";
+import _ from "underscore";
 
 var ImageList = React.createClass({
     propTypes: {
@@ -9,8 +10,8 @@ var ImageList = React.createClass({
         return (
             <div>
                 {
-                    this.props.images.map((imgLink) => {
-                        return <img src={imgLink} />;
+                    this.props.images.map(imgLink => {
+                        return <img key={_.last(imgLink.split("/"))} src={imgLink} />;
                     })
                 }
             </div>
