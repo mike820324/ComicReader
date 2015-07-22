@@ -1,6 +1,8 @@
 import React from "react";
 import clipboard from "clipboard";
 
+import imageAction from "../actions/imageAction";
+
 var HeaderBar = React.createClass({
     propTypes: {
         onClick: React.PropTypes.func.isRequired
@@ -10,7 +12,8 @@ var HeaderBar = React.createClass({
         const node = this.refs.input_url.getDOMNode();
         const url = node.value;
         node.value = "";
-        this.props.onClick(url);
+        imageAction.fetchImage(url);
+        // this.props.onClick(url);
     },
 
     pasteFromClipboard() {
