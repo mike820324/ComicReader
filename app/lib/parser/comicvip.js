@@ -13,7 +13,8 @@ class ComicvipParser extends baseParser {
             let $ = this.parseHtml(response);
 
             let element = $("script");
-            let ast = this.parseScript(element[10].children[0].data);
+            const length = element.length;
+            let ast = this.parseScript(element[length - 2].children[0].data);
             let variables = {};
             for( let i of ast.body) {
                 if( i.type === "VariableDeclaration") {
