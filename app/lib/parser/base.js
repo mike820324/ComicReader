@@ -33,8 +33,8 @@ class baseParser {
     // return cheerio object
     parseHtml(response) {
         // guess the encoding and decode it
-        let encoding = charset(response.header, response.data);
-        let encodeBuffer = iconv.decode(response.data, encoding);
+        const encoding = charset(response.header, response.data);
+        const encodeBuffer = iconv.decode(response.data, encoding);
 
         // html parsing
         var $ = whacko.load(encodeBuffer, {encodeEntities: false});
