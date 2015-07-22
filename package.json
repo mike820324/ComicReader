@@ -6,6 +6,7 @@
   "scripts": {
     "start": "electron ./",
     "build": "gulp",
+    "check": "find app/ | grep js | xargs eslint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
