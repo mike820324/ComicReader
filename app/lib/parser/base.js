@@ -7,11 +7,12 @@ https.globalAgent.maxSockets = 10;
 import request from "request";
 
 import charset from "charset";
+import iconv from "iconv-lite";
 import whacko from "whacko";
 import esprima from "esprima";
+import urlParse from "url";
 
 import Promise from "bluebird";
-import iconv from "iconv-lite";
 
 class baseParser {
     // return a promise of a request
@@ -37,13 +38,17 @@ class baseParser {
         const encodeBuffer = iconv.decode(response.data, encoding);
 
         // html parsing
-        var $ = whacko.load(encodeBuffer, {encodeEntities: false});
+        const $ = whacko.load(encodeBuffer, {encodeEntities: false});
         return $;
     }
 
     // return the ast tree of a pure javascript
     parseScript(rawData) {
         return esprima.parse(rawData);
+    }
+
+    parseUrl(url) {
+        return urlParse.parse(url, true);
     }
 }
 
