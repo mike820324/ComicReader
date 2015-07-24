@@ -31,6 +31,7 @@
     "whacko": "^0.18.1"
   },
   "devDependencies": {
+    "babel": "^5.8.3",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0"
   }
