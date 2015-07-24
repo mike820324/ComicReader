@@ -30,7 +30,6 @@ var ComicReader = React.createClass({
             <div>
                 <HeaderBar />
                 <ImageList images={this.state.images}/>
-                <h1> This is Footer </h1>
             </div>
         );
     }

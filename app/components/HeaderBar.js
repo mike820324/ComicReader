@@ -10,7 +10,6 @@ var HeaderBar = React.createClass({
         const url = node.value;
         node.value = "";
         imageAction.fetchImage(url);
-        // this.props.onClick(url);
     },
 
     pasteFromClipboard() {
@@ -20,11 +19,42 @@ var HeaderBar = React.createClass({
     },
 
     render() {
+        const containerStyle = {
+            width: "90%",
+            position: "relative",
+            left: "5%"
+        };
+
+        const titleStyle = {
+            textAlign: "center"
+        };
+
+        const barContainerStyle = {
+            padding: "5px 10px 5px 10px",
+            position: "relative"
+        };
+
+        const inputStyle = {
+            width: "90%",
+            padding: "5px",
+            fontSize: "medium"
+        };
+
+        const buttonStyle = {
+            position: "absolute",
+            right: "5px",
+            width: "8%",
+            height: "32px",
+            borderRadius: "5px"
+        };
+
         return (
-            <div>
-                <h1> Comic Reader </h1>
-                <input ref="input_url" type="text" onFocus={this.pasteFromClipboard}/>
-                <button onClick={this.onClickHandler}> Fetch </button>
+            <div style={containerStyle}>
+                <h1 style={titleStyle}> Comic Reader </h1>
+                <div style={barContainerStyle}>
+                    <input ref="input_url" type="text" onFocus={this.pasteFromClipboard} style={inputStyle}/>
+                    <button onClick={this.onClickHandler} style={buttonStyle}> Fetch </button>
+                </div>
             </div>
         );
     }
