@@ -2,6 +2,8 @@ import React from "react";
 import _ from "underscore";
 
 var ImageList = React.createClass({
+    displayName: "ImageList",
+
     propTypes: {
         images: React.PropTypes.array.isRequired
     },

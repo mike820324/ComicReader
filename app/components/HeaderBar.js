@@ -4,10 +4,7 @@ import clipboard from "clipboard";
 import imageAction from "../actions/imageAction";
 
 var HeaderBar = React.createClass({
-    propTypes: {
-        onClick: React.PropTypes.func.isRequired
-    },
-
+    displayName: "HeaderBar",
     onClickHandler() {
         const node = this.refs.input_url.getDOMNode();
         const url = node.value;

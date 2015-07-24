@@ -7,6 +7,8 @@ import HeaderBar from "./HeaderBar";
 import ImageList from "./ImageList";
 
 var ComicReader = React.createClass({
+    displayName: "ComicReader",
+
     getInitialState() {
         return imageStore.getState();
     },
