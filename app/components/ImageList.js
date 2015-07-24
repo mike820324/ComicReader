@@ -11,17 +11,17 @@ var ImageList = React.createClass({
     render() {
         const containerStyle = {
             width: "90%",
-            height: "80%",
+            height: "85%",
             overflow: "scroll",
             position: "relative",
             left: "5%",
-            top: "50px",
+            top: "10px",
             borderStyle: "groove"
         };
 
         const imageStyle = {
             display: "block",
-            width: "95%",
+            width: "98%",
             marginLeft: "auto",
             marginRight: "auto"
         };

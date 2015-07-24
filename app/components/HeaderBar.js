@@ -26,7 +26,8 @@ var HeaderBar = React.createClass({
         };
 
         const titleStyle = {
-            textAlign: "center"
+            textAlign: "center",
+            margin: "0px"
         };
 
         const barContainerStyle = {
@@ -42,10 +43,12 @@ var HeaderBar = React.createClass({
 
         const buttonStyle = {
             position: "absolute",
-            right: "5px",
-            width: "8%",
+            right: "0px",
+            width: "10%",
             height: "32px",
-            borderRadius: "5px"
+            background: "white",
+            borderRadius: "5px",
+            borderWidth: "0.1em"
         };
 
         return (
