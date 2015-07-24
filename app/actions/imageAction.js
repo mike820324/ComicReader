@@ -3,6 +3,7 @@ import alt from "../alt";
 
 import comicvipParser from "../lib/parser/comicvip";
 import dmedenParser from "../lib/parser/dmeden";
+import ninenineParser from "../lib/parser/ninenineComic";
 
 
 class ImageAction {
@@ -18,6 +19,13 @@ class ImageAction {
 
         if(urlParser.parse(url).hostname.includes("dmeden.net")) {
             dmedenParser.getImageLinks(url)
+            .then(images => {
+                this.actions.updateImage(images);
+            });
+        }
+
+        if(urlParser.parse(url).hostname.includes("99comic.com")) {
+            ninenineParser.getImageLinks(url)
             .then(images => {
                 this.actions.updateImage(images);
             });

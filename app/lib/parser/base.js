@@ -32,9 +32,12 @@ class baseParser {
     }
 
     // return cheerio object
-    parseHtml(response) {
+    parseHtml(response, defaultEncoding) {
         // guess the encoding and decode it
-        const encoding = charset(response.header, response.data);
+        const encoding = defaultEncoding !== undefined ?
+            defaultEncoding :
+            charset(response.header, response.data);
+
         const encodeBuffer = iconv.decode(response.data, encoding);
 
         // html parsing
