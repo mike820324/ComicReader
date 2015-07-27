@@ -65,6 +65,13 @@ Currently this project is still under **heavy developmnet**. The following are t
 - [ ] Add distribution script for electron. 
 
 ## Changelog:
+**0.5.2**: add toggle viewer feature and small refactors
+- add toggle between click viewer and scroll viewer
+- change imageAction to issueAction
+- change imageStore to issueStore
+- change App.js to IssueViewer
+- change HeaderBar to SearchBar
+
 **0.5.1**: Add smart load support to scroll image viewer and small bug fix
 - Add smart load to ImageList
 - modify the calLoadRange so that it will output the correct range when the nearing the end of the issue
