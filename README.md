@@ -65,6 +65,18 @@ Currently this project is still under **heavy developmnet**. The following are t
 - [ ] Add distribution script for electron. 
 
 ## Changelog:
+**0.5.1**: Add smart load support to scroll image viewer and small bug fix
+- Add smart load to ImageList
+- modify the calLoadRange so that it will output the correct range when the nearing the end of the issue
+
+**0.5.0**: Add new image viewer
+- Add Click Image Viewer
+- Add two new components: ShiftImageList and PageNavigator
+- Add two actions to imageActions: prevPage and nextPage
+- Add new fields to imageStore: currentIndex and imageLoadRange
+- Add new methods to imageStore: handlePrevPage, handleNextPage and calLoadRange
+
+
 **0.4.4**: Add README and LICENSE
 
 **0.4.3**: UI Enhancement:
