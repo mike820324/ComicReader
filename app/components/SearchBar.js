@@ -1,21 +1,30 @@
 import React from "react";
 import clipboard from "clipboard";
 
-import imageAction from "../actions/imageAction";
+import issueAction from "../actions/issueAction";
 
 var HeaderBar = React.createClass({
     displayName: "HeaderBar",
+
+    propTypes: {
+        mode: React.PropTypes.string.isRequired
+    },
+
     onClickHandler() {
         const node = this.refs.input_url.getDOMNode();
         const url = node.value;
         node.value = "";
-        imageAction.fetchImage(url);
+        issueAction.fetchImage(url);
     },
 
     pasteFromClipboard() {
         const clipboardText = clipboard.readText();
         const node = this.refs.input_url.getDOMNode();
         node.value = clipboardText;
+    },
+
+    toggleViewerMode() {
+        issueAction.toggleViewerMode();
     },
 
     render() {
@@ -36,12 +45,19 @@ var HeaderBar = React.createClass({
         };
 
         const inputStyle = {
-            width: "90%",
+            width: "75%",
             padding: "5px",
             fontSize: "medium"
         };
 
-        const buttonStyle = {
+        const fetchButtonStyle = {
+            position: "absolute",
+            width: "10%",
+            height: "32px",
+            borderWidth: "0.1em"
+        };
+
+        const toggleButtonStyle = {
             position: "absolute",
             right: "0px",
             width: "10%",
@@ -56,7 +72,8 @@ var HeaderBar = React.createClass({
                 <h1 style={titleStyle}> Comic Reader </h1>
                 <div style={barContainerStyle}>
                     <input ref="input_url" type="text" onFocus={this.pasteFromClipboard} style={inputStyle}/>
-                    <button onClick={this.onClickHandler} style={buttonStyle}> Fetch </button>
+                    <button onClick={this.onClickHandler} style={fetchButtonStyle}> Fetch </button>
+                    <button onClick={this.toggleViewerMode} style={toggleButtonStyle}> {this.props.mode} </button>
                 </div>
             </div>
         );

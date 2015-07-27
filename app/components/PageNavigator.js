@@ -1,5 +1,5 @@
 import React from "react";
-import imageAction from "../actions/imageAction";
+import issueAction from "../actions/issueAction";
 
 var PageNavigator = React.createClass({
     displayName: "PageNavigator",
@@ -9,11 +9,11 @@ var PageNavigator = React.createClass({
     },
 
     onPageNext() {
-        imageAction.nextPage();
+        issueAction.nextPage();
     },
 
     onPagePrev() {
-        imageAction.prevPage();
+        issueAction.prevPage();
     },
 
     render() {

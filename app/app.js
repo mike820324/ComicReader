@@ -1,9 +1,9 @@
 import React from "react";
-import App from "./components/App";
+import IssueViewer from "./components/IssueViewer";
 
 
 React.render(
-    <App />,
+    <IssueViewer />,
     document.getElementById("app")
 );
 

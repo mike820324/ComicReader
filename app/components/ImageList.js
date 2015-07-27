@@ -1,7 +1,7 @@
 import React from "react";
 import _ from "underscore";
 
-import imageAction from "../actions/imageAction";
+import issueAction from "../actions/issueAction";
 
 var ImageList = React.createClass({
     displayName: "ImageList",
@@ -18,7 +18,7 @@ var ImageList = React.createClass({
         const newPage = Math.floor(node.scrollTop / imageHeight );
 
         if(this.props.currentIndex !== newPage) {
-            imageAction.updateIndex(Math.floor(node.scrollTop / imageHeight));
+            issueAction.updateIndex(Math.floor(node.scrollTop / imageHeight));
         }
     },
 

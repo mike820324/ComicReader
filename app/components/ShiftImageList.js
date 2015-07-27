@@ -2,7 +2,7 @@ import React from "react";
 import _ from "underscore";
 
 import PageNavigator from "./PageNavigator";
-import ImageAction from "../actions/imageAction";
+import issueAction from "../actions/issueAction";
 
 var ShiftImageList = React.createClass({
     displayName: "ShiftImageList",
@@ -19,9 +19,9 @@ var ShiftImageList = React.createClass({
 
     handleKeyDown(e) {
         if( e.which === 37 ) {
-            ImageAction.prevPage();
+            issueAction.prevPage();
         } else if( e.which === 39 ) {
-            ImageAction.nextPage();
+            issueAction.nextPage();
         }
     },
 

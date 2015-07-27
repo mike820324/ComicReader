@@ -6,7 +6,7 @@ import dmedenParser from "../lib/parser/dmeden";
 import ninenineParser from "../lib/parser/ninenineComic";
 
 
-class ImageAction {
+class IssueAction {
     fetchImage(url) {
         this.dispatch();
 
@@ -32,6 +32,10 @@ class ImageAction {
         }
     }
 
+    toggleViewerMode() {
+        this.dispatch();
+    }
+
     updateImage(images) {
         this.dispatch(images);
     }
@@ -49,4 +53,4 @@ class ImageAction {
     }
 }
 
-export default alt.createActions(ImageAction);
+export default alt.createActions(IssueAction);

@@ -1,26 +1,33 @@
 import alt from "../alt";
 
-import imageAction from "../actions/imageAction";
+import issueAction from "../actions/issueAction";
 
 const stepSize = 6;
 
-class ImageStore {
+class IssueStore {
     constructor() {
+        this.viewerMode = "click";
         this.currentIndex = 0;
         this.imageLoadRange = stepSize;
         this.images = [];
 
+        // binding the actions and store handler
         this.bindListeners({
-            updateImage: imageAction.updateImage,
-            updateIndex: imageAction.updateIndex,
-            handleNextPage: imageAction.nextPage,
-            handlePrevPage: imageAction.prevPage
+            toggleViewerMode: issueAction.toggleViewerMode,
+            updateImage: issueAction.updateImage,
+            updateIndex: issueAction.updateIndex,
+            handleNextPage: issueAction.nextPage,
+            handlePrevPage: issueAction.prevPage
         });
     }
 
     updateImage(images) {
         this.currentIndex = 0;
         this.images = images;
+    }
+
+    toggleViewerMode() {
+        this.viewerMode = this.viewerMode === "click" ? "scroll" : "click";
     }
 
     updateIndex(index) {
@@ -56,7 +63,7 @@ class ImageStore {
         const loadRange = this.currentIndex >= pivotIndex ?
             Math.ceil( pivotIndex / stepSize) * stepSize + stepSize :
             Math.ceil( pivotIndex / stepSize) * stepSize;
-        
+
         if(loadRange > this.images.length) {
             this.imageLoadRange = this.images.length;
         } else {
@@ -66,5 +73,5 @@ class ImageStore {
 }
 
 
-export default alt.createStore(ImageStore);
+export default alt.createStore(IssueStore);
 
