@@ -4,8 +4,8 @@ import issueStore from "../stores/issueStore";
 
 // import compoenents
 import SearchBar from "./SearchBar";
-import ImageList from "./ImageList";
-import ShiftImageList from "./ShiftImageList";
+import ImageViewer from "./ImageViewer";
+import PageNavigator from "./PageNavigator.js";
 
 var IssueViewer = React.createClass({
     displayName: "IssueViewer",
@@ -27,14 +27,17 @@ var IssueViewer = React.createClass({
     },
 
     render() {
-        const viewer = this.state.viewerMode === "click" ?
-            <ShiftImageList images={this.state.images} currentIndex={this.state.currentIndex} imageLoadRange={this.state.imageLoadRange}/> :
-            <ImageList images={this.state.images} currentIndex={this.state.currentIndex} imageLoadRange={this.state.imageLoadRange}/>;
-
         return (
             <div>
                 <SearchBar mode={this.state.viewerMode}/>
-                {viewer}
+                <ImageViewer
+                    mode={this.state.viewerMode}
+                    images={this.state.images}
+                    currentIndex={this.state.currentIndex}
+                    imageLoadRange={this.state.imageLoadRange}
+                />
+                {this.state.viewerMode === "click" ? <PageNavigator /> : null}
+
             </div>
         );
     }
