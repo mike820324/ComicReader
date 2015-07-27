@@ -39,11 +39,11 @@ Currently this project is still under **heavy developmnet**. The following are t
 - [ ] Show the comic info that the user want to follow
 - [ ] Two different image viewer for the user.
   - [x] scroll viewer
-  - [ ] click viewer
+  - [x] click viewer
   - [ ] toggle these two viewers
-- [ ]  Performance enhancement for image viewer
-  - [ ] do not load all the image at a time for **scroll viewer**.
-  - [ ] do not load all the image at a time for **click viewer**.
+- [x]  Performance enhancement for image viewer
+  - [x] do not load all the image at a time for **scroll viewer**.
+  - [x] do not load all the image at a time for **click viewer**.
 - [ ] Comic Websites Support
   - [x] getting images from a given issue url
     - [x] 99770
