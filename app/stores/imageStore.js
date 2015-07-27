@@ -12,6 +12,7 @@ class ImageStore {
 
         this.bindListeners({
             updateImage: imageAction.updateImage,
+            updateIndex: imageAction.updateIndex,
             handleNextPage: imageAction.nextPage,
             handlePrevPage: imageAction.prevPage
         });
@@ -20,6 +21,12 @@ class ImageStore {
     updateImage(images) {
         this.currentIndex = 0;
         this.images = images;
+    }
+
+    updateIndex(index) {
+        this.currentIndex = index;
+        this.calLoadRange();
+        console.log(this.currentIndex);
     }
 
     handleNextPage() {
@@ -49,8 +56,12 @@ class ImageStore {
         const loadRange = this.currentIndex >= pivotIndex ?
             Math.ceil( pivotIndex / stepSize) * stepSize + stepSize :
             Math.ceil( pivotIndex / stepSize) * stepSize;
-
-        this.imageLoadRange = loadRange;
+        
+        if(loadRange > this.images.length) {
+            this.imageLoadRange = this.images.length;
+        } else {
+            this.imageLoadRange = loadRange;
+        }
     }
 }
 

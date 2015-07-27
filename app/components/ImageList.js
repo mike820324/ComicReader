@@ -1,11 +1,25 @@
 import React from "react";
 import _ from "underscore";
 
+import imageAction from "../actions/imageAction";
+
 var ImageList = React.createClass({
     displayName: "ImageList",
 
     propTypes: {
-        images: React.PropTypes.array.isRequired
+        images: React.PropTypes.array.isRequired,
+        currentIndex: React.PropTypes.number.isRequired,
+        imageLoadRange: React.PropTypes.number.isRequired
+    },
+
+    handleScroll() {
+        const node = this.refs.viewer.getDOMNode();
+        const imageHeight = Math.floor(node.scrollHeight / this.props.imageLoadRange);
+        const newPage = Math.floor(node.scrollTop / imageHeight );
+
+        if(this.props.currentIndex !== newPage) {
+            imageAction.updateIndex(Math.floor(node.scrollTop / imageHeight));
+        }
     },
 
     render() {
@@ -19,20 +33,28 @@ var ImageList = React.createClass({
             borderStyle: "groove"
         };
 
-        const imageStyle = {
-            display: "block",
-            width: "98%",
-            marginLeft: "auto",
-            marginRight: "auto"
-        };
+        const children = this.props.images.map( (imgLink, index) => {
+            /* start to load next chunk*/
+            if ( index < this.props.imageLoadRange) {
+                const imageStyle = {
+                    display: "block",
+                    width: "100%",
+                    marginLeft: "auto",
+                    marginRight: "auto"
+                };
+
+                return (
+                    <img
+                        key={_.last(imgLink.split("/"))}
+                        src={imgLink}
+                        style={imageStyle}/>
+                );
+            }
+        });
 
         return (
-            <div style={containerStyle}>
-                {
-                    this.props.images.map(imgLink => {
-                        return <img key={_.last(imgLink.split("/"))} src={imgLink} style={imageStyle}/>;
-                    })
-                }
+            <div style={containerStyle} ref="viewer" onScroll={this.handleScroll}>
+                {children}
             </div>
         );
     }

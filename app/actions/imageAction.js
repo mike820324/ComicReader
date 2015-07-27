@@ -36,6 +36,10 @@ class ImageAction {
         this.dispatch(images);
     }
 
+    updateIndex(index) {
+        this.dispatch(index);
+    }
+
     nextPage() {
         this.dispatch();
     }
