@@ -7,31 +7,41 @@ class ComicvipParser extends baseParser {
         this.issueMagic = "#Form1 > script";
     }
 
-    getImageLinks(url) {
+    getIssueInfo(url) {
         return this.request(url)
         .then(response => {
-            let $ = this.parseHtml(response);
+            const $ = this.parseHtml(response);
+            const urlObject = this.parseUrl(url);
 
-            let element = $("script");
-            const length = element.length;
-            let ast = this.parseScript(element[length - 2].children[0].data);
-            let variables = {};
-            for( let i of ast.body) {
-                if( i.type === "VariableDeclaration") {
-                    let name = i.declarations[0].id.name;
-                    let value = i.declarations[0].init.value;
-                    variables[name] = value;
-                }
-            }
+            const issueNum = urlObject.query.ch;
+            const images = this.getImageLinks($, issueNum);
 
-            let ch = url.split("=")[1];
-            let issueMagic = this.getIssueMagic(variables.cs, ch);
-            let pageNum = this.getPageNum(issueMagic);
-            let images = _.range(pageNum).map((number) => {
-                return this.getImageUrl(issueMagic, variables.ti, number + 1);
-            });
-            return images;
+            return {
+                issueNum: issueNum,
+                images: images
+            };
         });
+    }
+
+    getImageLinks($, ch) {
+        const element = $("script");
+        const length = element.length;
+        const ast = this.parseScript(element[length - 2].children[0].data);
+        const variables = {};
+        for( let i of ast.body) {
+            if( i.type === "VariableDeclaration") {
+                const name = i.declarations[0].id.name;
+                const value = i.declarations[0].init.value;
+                variables[name] = value;
+            }
+        }
+
+        const issueMagic = this.getIssueMagic(variables.cs, ch);
+        const pageNum = this.getPageNum(issueMagic);
+        const images = _.range(pageNum).map((number) => {
+            return this.getImageUrl(issueMagic, variables.ti, number + 1);
+        });
+        return images;
     }
 
     getIssueMagic(cs, ch) {

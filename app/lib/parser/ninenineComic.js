@@ -1,3 +1,5 @@
+import _ from "underscore";
+import urlParse from "url";
 import baseParser from "./base";
 
 class NinenineParser extends baseParser {
@@ -46,25 +48,90 @@ class NinenineParser extends baseParser {
         return variables;
     }
 
-    getImageLinks(urlLink) {
+    getIssueList($) {
+        const issueListNodes = $("div.cVol > div.cVolList > div > a");
+
+        const issueList = _.range(issueListNodes.length).map( index => {
+            const node = issueListNodes[index];
+            return {
+                index: issueListNodes.length - index,
+                title: node.children[0].data,
+                href: node.attribs.href
+            };
+        });
+
+        return issueList;
+    }
+
+    getComicInfo(urlLink) {
         return this.request(urlLink)
         .then( response => {
-            const $ = this.parseHtml(response, "big5");
-            const variables = this.parseVariable($);
-            const sFiles = variables.sFiles;
-            const sPath = variables.sPath;
-            const arrFiles = sFiles.split("|");
-            const arrDS = this.sDs.split("|");
+            const $ = this.parseHtml(response, "utf8");
+            const url = this.parseUrl(urlLink);
 
-            const baseDomain = this.getSLUrl(sPath, arrDS);
-
-            const imageLinks = arrFiles.map( link => {
-                return baseDomain + link;
+            const issueList = this.getIssueList($).map( issue => {
+                url.pathname = issue.href;
+                return {
+                    index: issue.index,
+                    title: issue.title,
+                    href: urlParse.format(url)
+                };
             });
 
-            return imageLinks;
+            return {
+                comicInfo: {
+                    title: "",
+                    author: "",
+                    type: "",
+                    isEnd: false,
+                    createDate: "",
+                    updateDate: ""
+
+                },
+                issueInfo: {
+                    length: issueList.length,
+                    issueList: issueList
+                }
+            };
         });
     }
+
+    /** getImageLinks
+     * get all the image links of the current issue
+     * @urlLink: (string)
+     */
+    getIssueInfo(urlLink) {
+        return this.request(urlLink)
+        .then( response => {
+            const $ = this.parseHtml(response, "utf8");
+            const imageLinks = this.getImageLinks($);
+
+            const node = $("span#spt2");
+            const issueNum = node[0].children[0].data.split(" ")[1];
+            const issueName = node[0].children[0].data.split(" ")[0];
+            return {
+                issueName: issueName,
+                issueNum: issueNum,
+                images: imageLinks
+            };
+        });
+    }
+
+    getImageLinks($) {
+        const variables = this.parseVariable($);
+        const sFiles = variables.sFiles;
+        const sPath = variables.sPath;
+        const arrFiles = sFiles.split("|");
+        const arrDS = this.sDs.split("|");
+
+        const baseDomain = this.getSLUrl(sPath, arrDS);
+
+        const imageLinks = arrFiles.map( link => {
+            return baseDomain + link;
+        });
+        return imageLinks;
+    }
+
 }
 
 export default new NinenineParser();

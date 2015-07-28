@@ -100,40 +100,51 @@ class DmedenParser extends baseParser {
         });
     }
 
-    getImageLinks(urlLink) {
-        /* get image links for this issue */
+    getIssueInfo(urlLink) {
         return this.request(urlLink)
         .then( response => {
             const url = this.parseUrl(urlLink);
             const $ = this.parseHtml(response);
 
-            const pageNum = this.getPageNum($);
-            const sID = this.getIssueUniqueId($);
-
-            const s = url.query.s;
-            const cuDomainNo = url.query.d === undefined ? "0" : url.query.d;
-
-            const imgLinks = _.range(pageNum).map( num => {
-                const page = num + 1;
-
-                const newUrl = url;
-                newUrl.pathname = path.join(url.pathname, "../..", sID, `${page}.html`);
-                newUrl.query = {
-                    s: s,
-                    d: cuDomainNo
+            const issueNum = $("title")[0].children[0].data.split(" ")[1];
+            const imagesPromise = this.getImageLinks($, url);
+            return imagesPromise.then(images => {
+                return {
+                    issueNum: issueNum,
+                    images: images
                 };
-                return urlParse.format(newUrl);
             });
 
-            const finalLinks = Promise.map(imgLinks, link => {
-                return this.getImgLink(link)
-                .then(imgLink => {
-                    return imgLink;
-                });
-            });
-
-            return finalLinks;
         });
+    }
+
+    getImageLinks($, url) {
+        const pageNum = this.getPageNum($);
+        const sID = this.getIssueUniqueId($);
+
+        const s = url.query.s;
+        const cuDomainNo = url.query.d === undefined ? "0" : url.query.d;
+
+        const imgLinks = _.range(pageNum).map( num => {
+            const page = num + 1;
+
+            const newUrl = url;
+            newUrl.pathname = path.join(url.pathname, "../..", sID, `${page}.html`);
+            newUrl.query = {
+                s: s,
+                d: cuDomainNo
+            };
+            return urlParse.format(newUrl);
+        });
+
+        const finalLinks = Promise.map(imgLinks, link => {
+            return this.getImgLink(link)
+            .then(imgLink => {
+                return imgLink;
+            });
+        });
+
+        return finalLinks;
     }
 }
 

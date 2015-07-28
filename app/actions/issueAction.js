@@ -11,23 +11,23 @@ class IssueAction {
         this.dispatch();
 
         if(urlParser.parse(url).hostname.includes("comicvip.com")) {
-            comicvipParser.getImageLinks(url)
-            .then(images => {
-                this.actions.updateImage(images);
+            comicvipParser.getIssueInfo(url)
+            .then(issueInfo => {
+                this.actions.updateImage(issueInfo.images);
             });
         }
 
         if(urlParser.parse(url).hostname.includes("dmeden.net")) {
-            dmedenParser.getImageLinks(url)
-            .then(images => {
-                this.actions.updateImage(images);
+            dmedenParser.getIssueInfo(url)
+            .then(issueInfo => {
+                this.actions.updateImage(issueInfo.images);
             });
         }
 
         if(urlParser.parse(url).hostname.includes("99comic.com")) {
-            ninenineParser.getImageLinks(url)
-            .then(images => {
-                this.actions.updateImage(images);
+            ninenineParser.getIssueInfo(url)
+            .then(issueInfo => {
+                this.actions.updateImage(issueInfo.images);
             });
         }
     }
