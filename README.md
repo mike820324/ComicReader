@@ -37,10 +37,10 @@ Currently this project is still under **heavy developmnet**. The following are t
   - [ ] How to use this application
   - [x] project description
 - [ ] Show the comic info that the user want to follow
-- [ ] Two different image viewer for the user.
+- [x] Two different image viewer for the user.
   - [x] scroll viewer
   - [x] click viewer
-  - [ ] toggle these two viewers
+  - [x] toggle these two viewers
 - [x]  Performance enhancement for image viewer
   - [x] do not load all the image at a time for **scroll viewer**.
   - [x] do not load all the image at a time for **click viewer**.
@@ -49,10 +49,10 @@ Currently this project is still under **heavy developmnet**. The following are t
     - [x] 99770
     - [x] dmeden
     - [x] comicvip
-  - [ ] getting issue info from a given issue url
-    - [ ] 99770
-    - [ ] dmeden
-    - [ ] comicvp
+  - [x] getting issue info from a given issue url
+    - [x] 99770
+    - [x] dmeden
+    - [x] comicvp
   - [ ] getting comic info from a given comic url
     - [ ] 99770
     - [ ] dmeden
@@ -65,6 +65,12 @@ Currently this project is still under **heavy developmnet**. The following are t
 - [ ] Add distribution script for electron. 
 
 ## Changelog:
+**0.6.0**: UI tweeks, Reorganize the components
+- add ComicReader component which will open the IssueViewer
+- move SearchBar to ComicReader
+- add IssueMenuBar and IssueStatusBar to IssueViewer
+- Add openViewer and closeViewer in actions and stores
+
 **0.5.3**: Comic parser enhancement
 - add issueNum support for all the comic parser
 - add comicName support for 99comic

@@ -1,6 +1,6 @@
 {
   "name": "ComicReader",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "A simple Comic reader using Electron",
   "main": "main.js",
   "scripts": {
