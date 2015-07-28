@@ -65,6 +65,12 @@ Currently this project is still under **heavy developmnet**. The following are t
 - [ ] Add distribution script for electron. 
 
 ## Changelog:
+**0.5.3**: Comic parser enhancement
+- add issueNum support for all the comic parser
+- add comicName support for 99comic
+- add issueList support for 99comic
+- change issueAction to adapt the new parser api
+
 **0.5.2**: add toggle viewer feature and small refactors
 - add toggle between click viewer and scroll viewer
 - change imageAction to issueAction
