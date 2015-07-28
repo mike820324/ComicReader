@@ -10,6 +10,7 @@ var ImageViewer = React.createClass({
         mode: React.PropTypes.string.isRequired,
         images: React.PropTypes.array.isRequired,
         currentIndex: React.PropTypes.number.isRequired,
+        currentIssue: React.PropTypes.string.isRequired,
         imageLoadRange: React.PropTypes.number.isRequired
     },
 

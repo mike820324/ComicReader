@@ -23,47 +23,38 @@ var HeaderBar = React.createClass({
         node.value = clipboardText;
     },
 
-    toggleViewerMode() {
-        issueAction.toggleViewerMode();
-    },
-
     render() {
         const containerStyle = {
-            width: "90%",
-            position: "relative",
-            left: "5%"
+            width: "100%",
+            position: "fixed",
+            left: "5%",
+            top: "35%"
         };
 
         const titleStyle = {
-            textAlign: "center",
-            margin: "0px"
+            textAlign: "center"
         };
 
         const barContainerStyle = {
             padding: "5px 10px 5px 10px",
-            position: "relative"
+            width: "100%"
         };
 
         const inputStyle = {
-            width: "75%",
+            position: "relative",
+            left: "10%",
+            width: "80%",
             padding: "5px",
+            marginBottom: "15px",
             fontSize: "medium"
         };
 
         const fetchButtonStyle = {
-            position: "absolute",
+            display: "block",
+            position: "relative",
+            left: "80%",
             width: "10%",
             height: "32px",
-            borderWidth: "0.1em"
-        };
-
-        const toggleButtonStyle = {
-            position: "absolute",
-            right: "0px",
-            width: "10%",
-            height: "32px",
-            background: "white",
-            borderRadius: "5px",
             borderWidth: "0.1em"
         };
 
@@ -73,7 +64,6 @@ var HeaderBar = React.createClass({
                 <div style={barContainerStyle}>
                     <input ref="input_url" type="text" onFocus={this.pasteFromClipboard} style={inputStyle}/>
                     <button onClick={this.onClickHandler} style={fetchButtonStyle}> Fetch </button>
-                    <button onClick={this.toggleViewerMode} style={toggleButtonStyle}> {this.props.mode} </button>
                 </div>
             </div>
         );

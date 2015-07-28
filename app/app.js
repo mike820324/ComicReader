@@ -1,9 +1,9 @@
 import React from "react";
-import IssueViewer from "./components/IssueViewer";
+import ComicReader from "./components/ComicReader";
 
 
 React.render(
-    <IssueViewer />,
+    <ComicReader />,
     document.getElementById("app")
 );
 

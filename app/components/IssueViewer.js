@@ -1,43 +1,50 @@
 import React from "react";
 
-import issueStore from "../stores/issueStore";
-
 // import compoenents
-import SearchBar from "./SearchBar";
 import ImageViewer from "./ImageViewer";
-import PageNavigator from "./PageNavigator.js";
+import PageNavigator from "./PageNavigator";
+import IssueStatusBar from "./IssueStatusBar";
+import IssueMenuBar from "./IssueMenuBar";
+
 
 var IssueViewer = React.createClass({
     displayName: "IssueViewer",
-
-    getInitialState() {
-        return issueStore.getState();
-    },
-
-    componentDidMount() {
-        issueStore.listen(this.onChange);
-    },
-
-    componentWillUnmount() {
-        issueStore.unlisten(this.onChange);
-    },
-
-    onChange(state) {
-        this.setState(state);
+    propTypes: {
+        viewerMode: React.PropTypes.string.isRequired,
+        issueInfo: React.PropTypes.object.isRequired,
+        currentIndex: React.PropTypes.number.isRequired,
+        imageLoadRange: React.PropTypes.number.isRequired
     },
 
     render() {
-        return (
-            <div>
-                <SearchBar mode={this.state.viewerMode}/>
-                <ImageViewer
-                    mode={this.state.viewerMode}
-                    images={this.state.images}
-                    currentIndex={this.state.currentIndex}
-                    imageLoadRange={this.state.imageLoadRange}
-                />
-                {this.state.viewerMode === "click" ? <PageNavigator /> : null}
+        const issueViewerStyle = {
+            background: "black",
+            position: "relative",
+            height: "100%",
+            width: "100%"
+        };
 
+        return (
+            <div style={issueViewerStyle}>
+                <IssueStatusBar
+                    currentIssue={this.props.issueInfo.issueNum}
+                    currentPage={this.props.currentIndex + 1}
+                    totalPage={this.props.issueInfo.images.length}
+                />
+                <ImageViewer
+                    mode={this.props.viewerMode}
+                    images={this.props.issueInfo.images}
+                    currentIndex={this.props.currentIndex}
+                    imageLoadRange={this.props.imageLoadRange}
+                />
+                <IssueMenuBar
+                    viewerMode={this.props.viewerMode}
+                />
+                {
+                    this.props.viewerMode !== "click" ?
+                        null :
+                        <PageNavigator />
+                }
             </div>
         );
     }
