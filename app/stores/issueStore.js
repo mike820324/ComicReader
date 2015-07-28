@@ -6,24 +6,37 @@ const stepSize = 6;
 
 class IssueStore {
     constructor() {
+        this.viewerIsOpen = false;
         this.viewerMode = "click";
         this.currentIndex = 0;
         this.imageLoadRange = stepSize;
-        this.images = [];
+
+        // will be fetch from website
+        this.issueInfo = undefined;
 
         // binding the actions and store handler
         this.bindListeners({
+            openViewer: issueAction.openViewer,
+            closeViewer: issueAction.closeViewer,
             toggleViewerMode: issueAction.toggleViewerMode,
-            updateImage: issueAction.updateImage,
+            updateIssueInfo: issueAction.updateIssueInfo,
             updateIndex: issueAction.updateIndex,
             handleNextPage: issueAction.nextPage,
             handlePrevPage: issueAction.prevPage
         });
     }
 
-    updateImage(images) {
+    updateIssueInfo(issueInfo) {
         this.currentIndex = 0;
-        this.images = images;
+        this.issueInfo = issueInfo;
+    }
+
+    openViewer() {
+        this.viewerIsOpen = true;
+    }
+
+    closeViewer() {
+        this.viewerIsOpen = false;
     }
 
     toggleViewerMode() {
@@ -38,7 +51,7 @@ class IssueStore {
 
     handleNextPage() {
         const currentPage = this.currentIndex + 1;
-        if( currentPage < this.images.length) {
+        if( currentPage < this.issueInfo.images.length) {
             console.log(currentPage);
             this.currentIndex = currentPage;
             this.calLoadRange();
@@ -64,8 +77,8 @@ class IssueStore {
             Math.ceil( pivotIndex / stepSize) * stepSize + stepSize :
             Math.ceil( pivotIndex / stepSize) * stepSize;
 
-        if(loadRange > this.images.length) {
-            this.imageLoadRange = this.images.length;
+        if(loadRange > this.issueInfo.images.length) {
+            this.imageLoadRange = this.issueInfo.images.length;
         } else {
             this.imageLoadRange = loadRange;
         }
