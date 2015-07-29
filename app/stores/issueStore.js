@@ -6,7 +6,6 @@ const stepSize = 6;
 
 class IssueStore {
     constructor() {
-        this.viewerIsOpen = false;
         this.viewerMode = "click";
         this.currentIndex = 0;
         this.imageLoadRange = stepSize;
@@ -16,8 +15,6 @@ class IssueStore {
 
         // binding the actions and store handler
         this.bindListeners({
-            openViewer: issueAction.openViewer,
-            closeViewer: issueAction.closeViewer,
             toggleViewerMode: issueAction.toggleViewerMode,
             updateIssueInfo: issueAction.updateIssueInfo,
             updateIndex: issueAction.updateIndex,
@@ -29,14 +26,6 @@ class IssueStore {
     updateIssueInfo(issueInfo) {
         this.currentIndex = 0;
         this.issueInfo = issueInfo;
-    }
-
-    openViewer() {
-        this.viewerIsOpen = true;
-    }
-
-    closeViewer() {
-        this.viewerIsOpen = false;
     }
 
     toggleViewerMode() {

@@ -1,6 +1,7 @@
 import urlParser from "url";
 import alt from "../alt";
 
+import viewerAction from "./viewerAction";
 import comicvipParser from "../lib/parser/comicvip";
 import dmedenParser from "../lib/parser/dmeden";
 import ninenineParser from "../lib/parser/ninenineComic";
@@ -14,7 +15,7 @@ class IssueAction {
             comicvipParser.getIssueInfo(url)
             .then(issueInfo => {
                 this.actions.updateIssueInfo(issueInfo);
-                this.actions.openViewer();
+                viewerAction.openViewer("IssueViewer");
             });
         }
 
@@ -22,7 +23,7 @@ class IssueAction {
             dmedenParser.getIssueInfo(url)
             .then(issueInfo => {
                 this.actions.updateIssueInfo(issueInfo);
-                this.actions.openViewer();
+                viewerAction.openViewer("IssueViewer");
             });
         }
 
@@ -30,20 +31,12 @@ class IssueAction {
             ninenineParser.getIssueInfo(url)
             .then(issueInfo => {
                 this.actions.updateIssueInfo(issueInfo);
-                this.actions.openViewer();
+                viewerAction.openViewer("IssueViewer");
             });
         }
     }
 
     toggleViewerMode() {
-        this.dispatch();
-    }
-
-    openViewer() {
-        this.dispatch();
-    }
-
-    closeViewer() {
         this.dispatch();
     }
 
