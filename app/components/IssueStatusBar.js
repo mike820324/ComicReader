@@ -1,6 +1,6 @@
 import React from "react";
 
-import issueAction from "../actions/issueAction";
+import viewerAction from "../actions/viewerAction";
 
 var IssueStatusBar = React.createClass({
     displayName: "IssueStatusBar",
@@ -11,7 +11,7 @@ var IssueStatusBar = React.createClass({
     },
 
     handleClose() {
-        issueAction.closeViewer();
+        viewerAction.closeViewer();
     },
 
     render() {

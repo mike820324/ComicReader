@@ -1,7 +1,8 @@
 import React from "react";
 import clipboard from "clipboard";
 
-import issueAction from "../actions/issueAction";
+// import issueAction from "../actions/issueAction";
+import ComicAction from "../actions/comicAction";
 
 var HeaderBar = React.createClass({
     displayName: "HeaderBar",
@@ -14,7 +15,7 @@ var HeaderBar = React.createClass({
         const node = this.refs.input_url.getDOMNode();
         const url = node.value;
         node.value = "";
-        issueAction.fetchImage(url);
+        ComicAction.fetchComicInfo(url);
     },
 
     pasteFromClipboard() {
