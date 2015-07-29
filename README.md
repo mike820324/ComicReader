@@ -65,6 +65,11 @@ Currently this project is still under **heavy developmnet**. The following are t
 - [ ] Add distribution script for electron. 
 
 ## Changelog:
+**0.7.0**: Add new viewer and internal api change:
+- Add ComicInfoViewer which will show the basic info of a comic
+  - 99comic -> issue list is currently supported
+- Move the openViewer and closeViewer logic to viewerAction and viewerStore
+
 **0.6.0**: UI tweeks, Reorganize the components
 - add ComicReader component which will open the IssueViewer
 - move SearchBar to ComicReader
