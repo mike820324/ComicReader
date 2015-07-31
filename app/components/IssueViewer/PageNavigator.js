@@ -1,5 +1,5 @@
 import React from "react";
-import issueAction from "../actions/issueAction";
+import issueAction from "../../actions/issueAction";
 
 var PageNavigator = React.createClass({
     displayName: "PageNavigator",

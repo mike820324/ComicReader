@@ -17,15 +17,8 @@ var IssueViewer = React.createClass({
     },
 
     render() {
-        const issueViewerStyle = {
-            background: "black",
-            position: "relative",
-            height: "100%",
-            width: "100%"
-        };
-
         return (
-            <div style={issueViewerStyle}>
+            <div>
                 <IssueStatusBar
                     currentIssue={this.props.issueInfo.issueNum}
                     currentPage={this.props.currentIndex + 1}

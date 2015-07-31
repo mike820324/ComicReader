@@ -1,6 +1,6 @@
 import React from "react";
 
-import issueAction from "../actions/issueAction";
+import issueAction from "../../actions/issueAction";
 import ImageList from "./ImageList";
 
 var ImageViewer = React.createClass({
