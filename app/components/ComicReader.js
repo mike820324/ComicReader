@@ -5,6 +5,7 @@ import issueStore from "../stores/issueStore";
 import comicStore from "../stores/comicStore";
 
 // import compoenents
+import Viewer from "./Viewer";
 import SearchBar from "./SearchBar";
 import IssueViewer from "./IssueViewer";
 import ComicInfoViewer from "./ComicInfoViewer";
@@ -68,9 +69,9 @@ var ComicReader = React.createClass({
         }
 
         return (
-            <div >
+            <Viewer>
                 {renderPage}
-            </div>
+            </Viewer>
         );
     }
 });

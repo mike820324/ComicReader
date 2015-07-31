@@ -16,34 +16,25 @@ var ComicInfoViewer = React.createClass({
     },
 
     render() {
-        const closeButtonStyle = {
-            position: "absolute",
-            top: "0px",
-            right: "0px",
-            background: "black",
-            color: "white",
-            borderStyle: "none",
-            fontSize: "larger"
-        };
-
         const titleStyle = {
             color: "white",
             textAlign: "center"
         };
 
-        const comicInfoViewerStyle = {
-            background: "black",
-            position: "relative",
-            height: "100%",
-            overflow: "scroll",
-            width: "100%"
+        const issueListStyle = {
+            position: "absolute",
+            top: "10%",
+            height: "80%",
+            width: "100%",
+            overflow: "scroll"
         };
 
         return (
-            <div style={comicInfoViewerStyle}>
-                <button onClick={this.handleClose} style={closeButtonStyle}> X </button>
+            <div>
                 <h1 style={titleStyle}> Issue List </h1>
-                <IssueList issues={this.props.issueList} />
+                <div style={issueListStyle}>
+                    <IssueList issues={this.props.issueList} />
+                </div>
             </div>
         );
     }
