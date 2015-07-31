@@ -1,6 +1,5 @@
 import React from "react";
 
-import viewerAction from "../actions/viewerAction";
 
 var IssueStatusBar = React.createClass({
     displayName: "IssueStatusBar",
@@ -8,10 +7,6 @@ var IssueStatusBar = React.createClass({
         currentIssue: React.PropTypes.string.isRequired,
         currentPage: React.PropTypes.number.isRequired,
         totalPage: React.PropTypes.number.isRequired
-    },
-
-    handleClose() {
-        viewerAction.closeViewer();
     },
 
     render() {
@@ -32,21 +27,10 @@ var IssueStatusBar = React.createClass({
             color: "white"
         };
 
-        const closeButtonStyle = {
-            position: "absolute",
-            top: "0px",
-            right: "0px",
-            fontSize: "larger",
-            background: "black",
-            color: "white",
-            borderStyle: "none"
-        };
-
         return (
             <div style={containerStyle}>
                 <h1 style={titleStyle}> {this.props.currentIssue} </h1>
                 <p style={pagerStyle}> {this.props.currentPage} / {this.props.totalPage} </p>
-                <button style={closeButtonStyle} onClick={this.handleClose}> X </button>
             </div>
         );
     }
