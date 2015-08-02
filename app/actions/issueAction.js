@@ -55,6 +55,14 @@ class IssueAction {
     prevPage() {
         this.dispatch();
     }
+
+    updateScrollHeight(height) {
+        this.dispatch(height);
+    }
+
+    updateImageHeight(info) {
+        this.dispatch(info);
+    }
 }
 
 export default alt.createActions(IssueAction);

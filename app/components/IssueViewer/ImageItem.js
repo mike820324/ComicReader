@@ -1,11 +1,21 @@
 import React from "react";
 import _ from "underscore";
 
+import issueAction from "../../actions/issueAction";
+
 var ImageItem = React.createClass({
     displayName: "ImageItem",
     propTypes: {
+        index: React.PropTypes.number.isRequired,
         imageSrc: React.PropTypes.string.isRequired,
         display: React.PropTypes.bool.isRequired
+    },
+
+    handleLoad(e) {
+        issueAction.updateImageHeight({
+            index: this.props.index,
+            height: e.target.offsetHeight
+        });
     },
 
     render() {
@@ -20,7 +30,9 @@ var ImageItem = React.createClass({
             <img
                 key={_.last(this.props.imageSrc.split("/"))}
                 src={this.props.imageSrc}
-                style={imageStyle}/>
+                style={imageStyle}
+                onLoad={this.handleLoad}
+                />
         );
     }
 });

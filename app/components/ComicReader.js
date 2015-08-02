@@ -7,8 +7,8 @@ import comicStore from "../stores/comicStore";
 // import compoenents
 import Viewer from "./Viewer";
 import SearchBar from "./SearchBar";
-import IssueViewer from "./IssueViewer";
-import ComicInfoViewer from "./ComicInfoViewer";
+import IssueViewer from "./IssueViewer/IssueViewer";
+import ComicInfoViewer from "./ComicInfoViewer/ComicInfoViewer";
 
 
 var ComicReader = React.createClass({

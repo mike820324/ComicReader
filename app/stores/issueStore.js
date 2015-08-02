@@ -6,12 +6,14 @@ const stepSize = 6;
 
 class IssueStore {
     constructor() {
-        this.viewerMode = "click";
+        this.viewerMode = "scroll";
         this.currentIndex = 0;
         this.imageLoadRange = stepSize;
 
         // will be fetch from website
         this.issueInfo = undefined;
+        this.imagesHeight = {};
+        this.scrollHeight = 0;
 
         // binding the actions and store handler
         this.bindListeners({
@@ -19,12 +21,15 @@ class IssueStore {
             updateIssueInfo: issueAction.updateIssueInfo,
             updateIndex: issueAction.updateIndex,
             handleNextPage: issueAction.nextPage,
-            handlePrevPage: issueAction.prevPage
+            handlePrevPage: issueAction.prevPage,
+            handlScroll: issueAction.updateScrollHeight,
+            updateImageHeight: issueAction.updateImageHeight
         });
     }
 
     updateIssueInfo(issueInfo) {
         this.currentIndex = 0;
+        this.imageLoadRange = stepSize;
         this.issueInfo = issueInfo;
     }
 
@@ -58,6 +63,27 @@ class IssueStore {
         } else {
             console.log("this is the first page");
         }
+    }
+
+    handlScroll(currentHeight) {
+        this.scrollHeight = currentHeight;
+        let height = 0;
+
+        for(let index = 0; index < this.issueInfo.images.length; index++ ) {
+            if(this.imagesHeight[index] !== undefined ) {
+                height += this.imagesHeight[index];
+                if( currentHeight <= height) {
+                    if(index !== this.currentIndex) {
+                        this.updateIndex(index);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    updateImageHeight(info) {
+        this.imagesHeight[info.index] = info.height;
     }
 
     calLoadRange() {
