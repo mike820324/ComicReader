@@ -16,9 +16,9 @@ var ImageList = React.createClass({
         const children = this.props.images.map( (imgLink, index) => {
             if ( index < this.props.imageLoadRange) {
                 if( this.props.mode === "click" && index !== this.props.currentIndex) {
-                    return <ImageItem imageSrc={imgLink} display={false}/>;
+                    return <ImageItem imageSrc={imgLink} display={false} index={index} key={index}/>;
                 } else {
-                    return <ImageItem imageSrc={imgLink} display={true}/>;
+                    return <ImageItem imageSrc={imgLink} display={true} index={index} key={index}/>;
                 }
             }
         });

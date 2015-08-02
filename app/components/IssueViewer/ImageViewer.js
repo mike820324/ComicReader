@@ -30,12 +30,7 @@ var ImageViewer = React.createClass({
 
     handleScroll() {
         const node = this.refs.viewer.getDOMNode();
-        const imageHeight = Math.floor(node.scrollHeight / this.props.imageLoadRange);
-        const newPage = Math.floor(node.scrollTop / imageHeight );
-
-        if(this.props.currentIndex !== newPage) {
-            issueAction.updateIndex(Math.floor(node.scrollTop / imageHeight));
-        }
+        issueAction.updateScrollHeight(node.scrollTop);
     },
 
     render() {
