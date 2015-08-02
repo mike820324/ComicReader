@@ -65,6 +65,15 @@ Currently this project is still under **heavy developmnet**. The following are t
 - [ ] Add distribution script for electron. 
 
 ## Changelog:
+**0.7.1**: Component Reorganize and smart load enhancement:
+- Smart Scroll Enhancement
+  - add new actions and stores to get the height of the new loaded image
+  - add new actions and stores to handle the scroll instead of component
+- Component Reorganization
+  - Add Viewer component
+  - mv IssueViewer related components into IssueViewer folder
+  - mv ComicInfoViewer related componets into ComicInfoReader folder
+
 **0.7.0**: Add new viewer and internal api change:
 - Add ComicInfoViewer which will show the basic info of a comic
   - 99comic -> issue list is currently supported
