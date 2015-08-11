@@ -65,6 +65,13 @@ Currently this project is still under **heavy developmnet**. The following are t
 - [ ] Add distribution script for electron. 
 
 ## Changelog:
+**0.7.2**: Parser Enhancment
+- 99comic parser can now get the following infos
+  - comic name
+  - comic author
+  - comic type
+  - is finished
+
 **0.7.1**: Component Reorganize and smart load enhancement:
 - Smart Scroll Enhancement
   - add new actions and stores to get the height of the new loaded image
