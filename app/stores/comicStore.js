@@ -4,9 +4,10 @@ import ComicAction from "../actions/comicAction";
 
 class ComicStore {
     constructor() {
-        this.comicName = "";
+        this.name = "";
         this.author = "";
-        this.end = false;
+        this.isEnd = false;
+        this.type = null;
         this.issueList = [];
 
         this.bindListeners({
@@ -14,8 +15,12 @@ class ComicStore {
         });
     }
 
-    updateComicInfo(comicInfo) {
-        this.issueList = comicInfo.issueInfo.issueList;
+    updateComicInfo(info) {
+        this.name = info.comicInfo.name;
+        this.author = info.comicInfo.author;
+        this.isEnd = info.comicInfo.isEnd;
+        this.type = info.comicInfo.type;
+        this.issueList = info.issueInfo.issueList;
     }
 }
 

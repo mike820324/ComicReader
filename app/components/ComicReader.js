@@ -61,6 +61,8 @@ var ComicReader = React.createClass({
         } else if(this.state.viewerStatus.viewerType === "ComicInfoViewer") {
             renderPage = (
                 <ComicInfoViewer
+                    name={this.state.comicInfoViewer.name}
+                    author={this.state.comicInfoViewer.author}
                     issueList={this.state.comicInfoViewer.issueList}
                 />
             );
