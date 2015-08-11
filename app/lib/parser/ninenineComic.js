@@ -78,12 +78,20 @@ class NinenineParser extends baseParser {
                 };
             });
 
+            const comicName = $("div#titleDiv > h1 > a")[0].attribs.title;
+            const comicInfoSection = $("li.info_div > ul > li");
+            const author = comicInfoSection[0].children[1].children[0].data;
+            const type = comicInfoSection[1].children[1].children[0].data;
+            const isEnd = comicInfoSection[3].children[1].children[0].data === "完結" ?
+                true :
+                false;
+
             return {
                 comicInfo: {
-                    title: "",
-                    author: "",
-                    type: "",
-                    isEnd: false,
+                    name: comicName,
+                    author: author,
+                    type: type,
+                    isEnd: isEnd,
                     createDate: "",
                     updateDate: ""
 
