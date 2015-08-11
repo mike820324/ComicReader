@@ -23,6 +23,7 @@ var Viewer = React.createClass({
 
         const viewerStyle = {
             background: "black",
+            color: "white",
             position: "relative",
             height: "100%",
             width: "100%"

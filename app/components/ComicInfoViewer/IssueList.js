@@ -23,7 +23,11 @@ var IssueList = React.createClass({
             <div>
                 {
                     this.props.issues.map( issue => {
-                        return <a onClick={this.transitionTo.bind(this, issue.href)} style={anchorStyle}>{issue.title}</a>;
+                        return (
+                            <a onClick={this.transitionTo.bind(this, issue.href)}
+                               style={anchorStyle}>
+                                {issue.title} </a>
+                        );
                     })
                 }
             </div>
